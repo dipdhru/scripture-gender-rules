@@ -1,0 +1,338 @@
+<meta name="dash-one-writer">
+<style>
+.gr { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); }
+.gr-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.gr-head p { margin: var(--cds-gap-xs) 0 0; max-width: 70ch; color: var(--color-fg-muted); line-height: 1.5; }
+.gr .gr-n { font-weight: 600; color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.gr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: var(--cds-gap-md); }
+.gr-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.gr-card.gr-wide { grid-column: 1 / -1; }
+.gr-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.gr-note { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.45; max-width: 75ch; }
+.gr-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); margin: 0; padding: 0; list-style: none; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.gr-legend li { display: flex; align-items: center; gap: 6px; }
+.gr-sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; flex: none; }
+.gr-chart { position: relative; min-height: 300px; }
+.gr-chart svg { display: block; overflow: visible; }
+.gr-chart text { font-size: 12px; font-variant-numeric: tabular-nums; }
+.gr-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; display: flex; flex-direction: column; gap: 2px; }
+.gr-tip-t { color: var(--cds-text-secondary); }
+.gr-tip-l { display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+.gr-fail { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.gr-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.gr-tablewrap { overflow-x: auto; }
+.gr-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.gr-table th, .gr-table td { padding: 6px 10px; border-bottom: 1px solid var(--color-border-line); text-align: right; white-space: nowrap; }
+.gr-table th:first-child, .gr-table td:first-child { text-align: left; }
+.gr-table th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+.gr details { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); max-width: 75ch; }
+.gr details summary { cursor: pointer; color: var(--color-fg); }
+.gr details dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: var(--cds-gap-sm) 0; }
+.gr details dt { color: var(--color-fg); }
+.gr details dd { margin: 0; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="gr">
+  <header class="gr-head">
+    <h1 id="title">Gendered rules in seven scriptures</h1>
+    <p>Buddhism is the only tradition with more rules for women than for men: <b class="gr-n" data-draw="v" data-source="summary" data-field="women_only" data-where="religion=Buddhism">—</b> rules for nuns against <b class="gr-n" data-draw="v" data-source="summary" data-field="men_only" data-where="religion=Buddhism">—</b> for monks. Manusmriti, the Torah and the Old Testament mostly address men, including when the rule is about a woman. Manusmriti has <b class="gr-n" data-draw="v" data-source="summary" data-field="men_only" data-where="religion=Hinduism">—</b> men-only rules and <b class="gr-n" data-draw="v" data-source="summary" data-field="women_only" data-where="religion=Hinduism">—</b> women-only rules.</p>
+  </header>
+
+  <div class="gr-grid">
+    <section class="gr-card gr-wide" id="one-gender">
+      <h2>Rules that apply to only one gender</h2>
+      <p class="gr-note">Count of confirmed rules whose conduct applies only to women (left) or only to men (right). Rules that apply to both genders aren't shown here.</p>
+      <ul class="gr-legend">
+        <li><span class="gr-sw" data-c="0"></span>Only women</li>
+        <li><span class="gr-sw" data-c="1"></span>Only men</li>
+      </ul>
+      <div class="gr-chart" data-draw="butterfly" data-source="summary">—</div>
+    </section>
+
+    <section class="gr-card" id="who-governs">
+      <h2>Whose conduct each rule governs</h2>
+      <p class="gr-note">Share of each text's gender-relevant rules. "Everyone" means the rule mentions a gendered word only in passing, such as "honour thy father and thy mother".</p>
+      <ul class="gr-legend">
+        <li><span class="gr-sw" data-c="0"></span>Only women</li>
+        <li><span class="gr-sw" data-c="1"></span>Only men</li>
+        <li><span class="gr-sw" data-c="2"></span>Both, named together</li>
+        <li><span class="gr-sw" data-c="muted"></span>Everyone</li>
+      </ul>
+      <div class="gr-chart" data-draw="governs" data-source="summary">—</div>
+    </section>
+
+    <section class="gr-card" id="effect-women">
+      <h2>How the rules affect women</h2>
+      <p class="gr-note">Rules that restrict or burden women, against rules that protect them or grant them a right. A rule addressed to men can protect women, such as a ban on selling a daughter.</p>
+      <ul class="gr-legend">
+        <li><span class="gr-sw" data-c="3"></span>Restricts women</li>
+        <li><span class="gr-sw" data-c="4"></span>Protects women</li>
+      </ul>
+      <div class="gr-chart" data-draw="effect" data-source="summary">—</div>
+    </section>
+
+    <section class="gr-card gr-wide" id="table">
+      <h2>All counts</h2>
+      <p class="gr-note">Every figure on this page, one row per text. The whole Bible row is the Old and New Testament combined.</p>
+      <div class="gr-tablewrap">
+        <table class="gr-table" data-source="summary" data-row-key="label">
+          <thead><tr>
+            <th data-field="label">Text</th>
+            <th data-field="rules">Confirmed rules</th>
+            <th data-field="women_only">Only women</th>
+            <th data-field="men_only">Only men</th>
+            <th data-field="both_named">Both named</th>
+            <th data-field="everyone">Everyone</th>
+            <th data-field="restrict_women">Restricts women</th>
+            <th data-field="protect_women">Protects women</th>
+            <th data-field="restrict_men">Restricts men</th>
+            <th data-field="protect_men">Protects men</th>
+          </tr></thead>
+          <tbody data-draw="table"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <details>
+    <summary>How these numbers were made</summary>
+    <dl>
+      <dt>Texts</dt><dd>One core rule text per religion, in public-domain English translations from 1611 to 1930. Hadith, Talmud and later legal traditions are not included.</dd>
+      <dt>Rule</dt><dd>A unit that commands, forbids, permits or penalizes a behaviour. Narrative, prophecy, prayers and one character's personal orders were excluded by hand.</dd>
+      <dt>Coding</dt><dd>Every gender-relevant rule was read and coded by one coder. Buddhist rules were coded from the structure of the monks' and nuns' codes, after a 20-rule spot-check.</dd>
+      <dt>Reliability</dt><dd>A blind re-code of 100 rules matched 100%, but the same coder made both passes, so this shows consistency, not independent agreement.</dd>
+      <dt>Not counted</dt><dd>Rules that name no gender. In the Bible, Torah and Quran these are most rules, and they are written with "he" as the default.</dd>
+    </dl>
+  </details>
+</div>
+
+<script>
+(() => {
+  const SRC = 'summary';
+  const fmt = d3.format(',');
+  const pct = d3.format('.0%');
+  const MUTED = 'var(--cds-chart-muted)';
+  const color = (c) => (c === 'muted' ? MUTED : dash.colors[+c]);
+
+  // legend swatches take the same series colors as the marks
+  for (const sw of document.querySelectorAll('.gr .gr-sw')) sw.style.background = color(sw.dataset.c);
+
+  const num = (r, k) => Number(r[k]) || 0;
+  const chartRows = (rows) => rows.filter((r) => !(r.religion === 'Christianity' && r.text_scope === 'all'));
+
+  // Shared: status handling. Returns rows when ready, else draws the resting state.
+  function ready(el) {
+    const d = dash.data(SRC);
+    el.replaceChildren();
+    el.classList.toggle('dash-skeleton', d.status === 'loading');
+    if (d.status === 'ok') return d.data;
+    if (d.status === 'error' || d.status === 'connect') {
+      const f = document.createElement('div');
+      f.className = 'gr-fail';
+      f.textContent = 'Failed to load';
+      el.append(f);
+    } else el.textContent = '—';
+    return null;
+  }
+
+  function textWidth(svg, strings) {
+    const t = svg.append('text').style('font-size', '12px');
+    let w = 0;
+    for (const s of strings) { t.text(s); w = Math.max(w, t.node().getComputedTextLength()); }
+    t.remove();
+    return w;
+  }
+
+  function tooltip(el) {
+    const tip = document.createElement('div');
+    tip.className = 'gr-tip';
+    tip.hidden = true;
+    el.append(tip);
+    return {
+      show(evt, title, lines) {
+        const t = document.createElement('div');
+        t.className = 'gr-tip-t';
+        t.textContent = title;
+        const parts = [t];
+        for (const [c, name, value] of lines) {
+          const l = document.createElement('div');
+          l.className = 'gr-tip-l';
+          const sw = document.createElement('span');
+          sw.className = 'gr-sw';
+          sw.style.background = c;
+          const n = document.createElement('span');
+          n.textContent = `${name}: ${value}`;
+          l.append(sw, n);
+          parts.push(l);
+        }
+        tip.replaceChildren(...parts);
+        tip.hidden = false;
+        const box = el.getBoundingClientRect();
+        const x = evt.clientX - box.left, y = evt.clientY - box.top;
+        const w = tip.offsetWidth, h = tip.offsetHeight;
+        tip.style.left = `${Math.max(0, Math.min(box.width - w, x + 12))}px`;
+        tip.style.top = `${Math.max(0, y - h - 10)}px`;
+      },
+      hide() { tip.hidden = true; },
+    };
+  }
+
+  // Horizontal-row frame shared by all three charts: label column at left,
+  // or labels above the bars when the card is narrow.
+  function frame(el, rows, rowInner) {
+    const W = Math.max(280, el.clientWidth || 600);
+    const svg = d3.select(el).append('svg').attr('width', '100%');
+    const labelW = textWidth(svg, rows.map((r) => r.label));
+    const stacked = W < 520 || labelW > W * 0.42;
+    const left = stacked ? 0 : Math.ceil(labelW) + 14;
+    const rowH = rowInner + (stacked ? 30 : 16);
+    return { W, svg, left, stacked, rowH };
+  }
+
+  function rowLabels(g, f, rows, top) {
+    g.selectAll('text.lab').data(rows).join('text')
+      .attr('class', 'lab')
+      .attr('x', 0)
+      .attr('y', (r, i) => top + i * f.rowH + (f.stacked ? 12 : f.rowH / 2))
+      .attr('dy', f.stacked ? 0 : '0.35em')
+      .style('fill', 'var(--color-fg)')
+      .text((r) => r.label);
+  }
+
+  // ---- values in the takeaway sentence
+  dash.draw('v', (el) => {
+    const d = dash.data(el.dataset.source);
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    const [k, v] = el.dataset.where.split('=');
+    const r = d.data.find((x) => x[k] === v);
+    el.textContent = r ? fmt(num(r, el.dataset.field)) : '—';
+  });
+
+  // ---- butterfly: only-women left, only-men right
+  dash.draw('butterfly', (el) => {
+    const all = ready(el);
+    if (!all) return;
+    const rows = chartRows(all);
+    const barH = 16;
+    const f = frame(el, rows, barH);
+    const top = 22;
+    const H = top + rows.length * f.rowH + 4;
+    f.svg.attr('viewBox', `0 0 ${f.W} ${H}`).attr('height', H);
+    const valW = textWidth(f.svg, ['000']) + 8;
+    const x0 = f.left, x1 = f.W;
+    const mid = x0 + (x1 - x0) / 2;
+    const half = (x1 - x0) / 2 - valW;
+    const max = d3.max(rows, (r) => Math.max(num(r, 'women_only'), num(r, 'men_only')));
+    const x = d3.scaleLinear([0, max], [0, half]);
+    const g = f.svg.append('g');
+    g.append('text').attr('x', mid - 6).attr('y', 12).attr('text-anchor', 'end').style('fill', 'var(--color-fg-muted)').text('← Only women');
+    g.append('text').attr('x', mid + 6).attr('y', 12).style('fill', 'var(--color-fg-muted)').text('Only men →');
+    g.append('line').attr('x1', mid).attr('x2', mid).attr('y1', top - 4).attr('y2', H)
+      .style('stroke', 'var(--cds-chart-axis)').style('stroke-width', 1);
+    rowLabels(g, f, rows, top);
+    const by = (i) => top + i * f.rowH + (f.stacked ? 20 : (f.rowH - barH) / 2);
+    const tip = tooltip(el);
+    const rowG = g.selectAll('g.row').data(rows).join('g').attr('class', 'row');
+    rowG.append('rect').attr('x', (r) => mid - 1 - x(num(r, 'women_only'))).attr('y', (r, i) => by(i))
+      .attr('width', (r) => x(num(r, 'women_only'))).attr('height', barH).attr('rx', 3).style('fill', color(0));
+    rowG.append('rect').attr('x', mid + 1).attr('y', (r, i) => by(i))
+      .attr('width', (r) => x(num(r, 'men_only'))).attr('height', barH).attr('rx', 3).style('fill', color(1));
+    rowG.append('text').attr('x', (r) => mid - 1 - x(num(r, 'women_only')) - 6).attr('y', (r, i) => by(i) + barH / 2)
+      .attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', 'var(--color-fg-muted)').text((r) => fmt(num(r, 'women_only')));
+    rowG.append('text').attr('x', (r) => mid + 1 + x(num(r, 'men_only')) + 6).attr('y', (r, i) => by(i) + barH / 2)
+      .attr('dy', '0.35em').style('fill', 'var(--color-fg-muted)').text((r) => fmt(num(r, 'men_only')));
+    rowG.append('rect').attr('x', 0).attr('y', (r, i) => top + i * f.rowH).attr('width', f.W).attr('height', f.rowH)
+      .style('fill', 'transparent')
+      .on('pointermove', (evt, r) => tip.show(evt, r.label, [
+        [color(0), 'Only women', fmt(num(r, 'women_only'))],
+        [color(1), 'Only men', fmt(num(r, 'men_only'))],
+      ]))
+      .on('pointerleave', () => tip.hide());
+  });
+
+  // ---- 100% stacked: whose conduct each rule governs
+  const GOV = [['women_only', 'Only women', '0'], ['men_only', 'Only men', '1'], ['both_named', 'Both, named together', '2'], ['everyone', 'Everyone', 'muted']];
+  dash.draw('governs', (el) => {
+    const all = ready(el);
+    if (!all) return;
+    const rows = chartRows(all);
+    const barH = 16;
+    const f = frame(el, rows, barH);
+    const top = 4;
+    const H = top + rows.length * f.rowH;
+    f.svg.attr('viewBox', `0 0 ${f.W} ${H}`).attr('height', H);
+    const x = d3.scaleLinear([0, 1], [f.left, f.W]);
+    const g = f.svg.append('g');
+    rowLabels(g, f, rows, top);
+    const by = (i) => top + i * f.rowH + (f.stacked ? 20 : (f.rowH - barH) / 2);
+    const tip = tooltip(el);
+    rows.forEach((r, i) => {
+      const total = num(r, 'rules');
+      let acc = 0;
+      const segs = GOV.map(([k, name, c]) => { const s = { k, name, c, n: num(r, k), a: acc / total }; acc += s.n; s.b = acc / total; return s; })
+        .filter((s) => s.n > 0);
+      const rowG = g.append('g');
+      for (const s of segs) {
+        const xa = x(s.a) + (s.a > 0 ? 1 : 0), xb = x(s.b) - (s.b < 1 ? 1 : 0);
+        rowG.append('rect').attr('x', xa).attr('y', by(i)).attr('width', Math.max(0, xb - xa)).attr('height', barH).attr('rx', 3).style('fill', color(s.c));
+      }
+      rowG.append('rect').attr('x', 0).attr('y', top + i * f.rowH).attr('width', f.W).attr('height', f.rowH).style('fill', 'transparent')
+        .on('pointermove', (evt) => tip.show(evt, `${r.label} · ${fmt(total)} rules`,
+          GOV.map(([k, name, c]) => [color(c), name, `${fmt(num(r, k))} (${pct(num(r, k) / total)})`])))
+        .on('pointerleave', () => tip.hide());
+    });
+  });
+
+  // ---- grouped: rules that restrict vs protect women
+  dash.draw('effect', (el) => {
+    const all = ready(el);
+    if (!all) return;
+    const rows = chartRows(all);
+    const barH = 9, gap = 2;
+    const f = frame(el, rows, barH * 2 + gap);
+    const top = 4;
+    const H = top + rows.length * f.rowH;
+    f.svg.attr('viewBox', `0 0 ${f.W} ${H}`).attr('height', H);
+    const valW = textWidth(f.svg, ['000']) + 8;
+    const max = d3.max(rows, (r) => Math.max(num(r, 'restrict_women'), num(r, 'protect_women')));
+    const x = d3.scaleLinear([0, max], [f.left, f.W - valW]);
+    const g = f.svg.append('g');
+    rowLabels(g, f, rows, top);
+    const by = (i) => top + i * f.rowH + (f.stacked ? 20 : (f.rowH - barH * 2 - gap) / 2);
+    const tip = tooltip(el);
+    rows.forEach((r, i) => {
+      const rowG = g.append('g');
+      [['restrict_women', '3'], ['protect_women', '4']].forEach(([k, c], j) => {
+        const y = by(i) + j * (barH + gap);
+        rowG.append('rect').attr('x', f.left).attr('y', y).attr('width', Math.max(0, x(num(r, k)) - f.left)).attr('height', barH).attr('rx', 2).style('fill', color(c));
+        rowG.append('text').attr('x', x(num(r, k)) + 5).attr('y', y + barH / 2).attr('dy', '0.35em').style('fill', 'var(--color-fg-muted)').style('font-size', '11px').text(fmt(num(r, k)));
+      });
+      rowG.append('rect').attr('x', 0).attr('y', top + i * f.rowH).attr('width', f.W).attr('height', f.rowH).style('fill', 'transparent')
+        .on('pointermove', (evt) => tip.show(evt, r.label, [
+          [color(3), 'Restricts women', fmt(num(r, 'restrict_women'))],
+          [color(4), 'Protects women', fmt(num(r, 'protect_women'))],
+          [MUTED, 'Mixed', fmt(num(r, 'mixed_women'))],
+        ]))
+        .on('pointerleave', () => tip.hide());
+    });
+  });
+
+  // ---- table body
+  const COLS = ['label', 'rules', 'women_only', 'men_only', 'both_named', 'everyone', 'restrict_women', 'protect_women', 'restrict_men', 'protect_men'];
+  dash.draw('table', (tbody) => {
+    const d = dash.data(SRC);
+    tbody.replaceChildren();
+    if (d.status !== 'ok') return;
+    for (const r of d.data) {
+      const tr = document.createElement('tr');
+      for (const c of COLS) {
+        const td = document.createElement('td');
+        td.textContent = c === 'label' ? r[c] : fmt(num(r, c));
+        tr.append(td);
+      }
+      tbody.append(tr);
+    }
+  });
+})();
+</script>
